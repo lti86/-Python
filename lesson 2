@@ -1,1 +1,105 @@
+#1
 
+my_int = 7
+my_float = 2.5
+my_str = "Hello!"
+my_list = ['a', '2']
+my_tuple = ('b', '3')
+my_dict = {'city': 'Moscow', 'country': 'Russia'}
+
+super_list = [my_int, my_float, my_str, my_list, my_tuple, my_dict]
+for i in super_list:
+    print(f'{i} is {type(i)}')
+    
+    #2
+    my_list = ['a', 'b', 'c', 'd', 'e']
+if len(my_list) % 2 == 0:
+    i = 0
+    while i < len(my_list):
+        el = my_list[i]
+        my_list[i] = my_list[i+1]
+        my_list[i+1] = el
+        i += 2
+else:
+    i = 0
+    while i < len(my_list) - 1:
+        el = my_list[i]
+        my_list[i] = my_list[i + 1]
+        my_list[i + 1] = el
+        i += 2
+print(my_list)
+
+#3
+
+number = int(input("Enter month number: "))
+if number <= 12 and number >= 1:
+    month_dict = {1: 'January',
+                  2: 'February',
+                  3: 'March',
+                  4: 'April',
+                  5: 'May',
+                  6: 'June',
+                  7: 'Jule',
+                  8: 'August',
+                  9: 'September',
+                  10: 'October',
+                  11: 'November',
+                  12: 'December'}
+    month_list = list(month_dict.values())
+    for i, el in enumerate(month_list):
+        if i == number-1:
+            print(f"Month from list is {month_list[i]}")
+            break
+    print(f"Month from dict is {month_dict[number]}")
+else:
+    print("Error")
+    
+#4
+
+my_str = input("Ввведите строку из нескольких слов: ")
+a = my_str.split(' ')
+for i, el in enumerate(a, 1):
+    if len(el) > 10:
+        el = el[0:10]
+    print(f"{i}. - {el}")
+    
+#5
+
+number = float(input("Enter number: "))
+my_list = [5, 4, 3, 1]
+c = my_list.count(number)
+for element in my_list:
+    if c > 0:
+        i = my_list.index(number)
+        my_list.insert(i+c, number)
+        break
+    else:
+        if number > element:
+            j = my_list.index(element)
+            my_list.insert(j, number)
+            break
+        elif number < my_list[len(my_list) - 1]:
+            my_list.append(number)
+print(my_list)
+
+#6
+
+goods = []
+while input("Would you like add product? Enter yes/no: ") == 'yes':
+    number = int(input("Enter product number: "))
+    features = {}
+    while input("Would you like add product parameters? Enter yes/no: ") == 'yes':
+        feature_key = input("Enter feature product: ")
+        feature_value = input("Enter feature value product: ")
+        features[feature_key] = feature_value
+    goods.append(tuple([number, features]))
+print(goods)
+#goods = [(1, {'name': 'comp', 'price': '11'}), (2, {'name': 'pri', 'price': '22'})]
+analitics = {}
+for good in goods:
+    for feature_key, feature_value in good[1].items():
+        if feature_key in analitics:
+            analitics[feature_key].append(feature_value)
+        else:
+         analitics[feature_key] = [feature_value]
+print(analitics)
